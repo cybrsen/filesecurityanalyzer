@@ -6,15 +6,28 @@ The script is intended for use in environments where data security and privacy a
 
 ## Features
 
-- **Sensitive Data Detection**: Scan for various types of sensitive data.
-- **Permission Check**: Evaluate file permissions and highlight potential security risks.
-- **Logging**: Detailed logs of all findings and errors during the scanning process.
+### Sensitive Data Detection
+- **Comprehensive Scanning:** The script efficiently scans files within a specified directory for various types of sensitive information, including email addresses, IP addresses, social security numbers, credit card details, phone numbers, and dates of birth. This ensures thorough identification of potential data leakage points in stored files.
+
+### Permission Check
+- **Security-Oriented File Permission Analysis:** Before processing each file, the script evaluates the file permissions using `os.stat()`. It logs a warning if the file permissions are more permissive than `644`, highlighting files that are potentially insecure because they are writable by users other than the owner or readable by all users. This feature is crucial for maintaining data security and integrity, ensuring that sensitive files are adequately protected against unauthorized access.
+
+### Logging
+- **Detailed and Secure Logging:** All findings and notable events during the scanning process are meticulously logged. The logging is designed to avoid direct exposure of sensitive data:
+  - **Secure Log Files:** Logs are written to a dedicated file (`file_scan_log.log`), which helps in tracking the activities of the script without displaying sensitive information on standard output.
+  - **Error Handling Logs:** Enhanced error handling within the script ensures that operational issues, especially those related to file access, are logged. This helps in diagnosing problems during the scanning process and ensures robust behavior under various file system conditions.
+  - **Privacy-Focused Data Handling:** The logs detail the types and counts of sensitive information found without revealing the actual data, aligning with best practices for data privacy and security.
+
+These features make the script an effective tool for environments where data security and privacy are paramount, ensuring that sensitive information is handled with the highest standards of care.
+
+###Result
+![File security Analyzer Log](https://i.ibb.co/xzKXX7n/filesecurity.png)
 
 ## Security and Compliance Considerations:
 
-- Data Privacy: Users are responsible for ensuring that all data processing complies with applicable data protection laws, such as the General Data Protection Regulation (GDPR) or the Health Insurance Portability and Accountability Act (HIPAA). Users should implement appropriate measures to secure data and potentially seek consent where required by law.
+- **Data Privacy:** Users are responsible for ensuring that all data processing complies with applicable data protection laws, such as the General Data Protection Regulation (GDPR) or the Health Insurance Portability and Accountability Act (HIPAA). Users should implement appropriate measures to secure data and potentially seek consent where required by law.
 
-- Best Practices: It is recommended to adopt data minimization principles, only processing the minimal amount of sensitive data necessary and considering data anonymization techniques where feasible.
+- **Best Practices:** It is recommended to adopt data minimization principles, only processing the minimal amount of sensitive data necessary and considering data anonymization techniques where feasible.
 
 
 ## Getting Started
@@ -33,10 +46,15 @@ What you need to install the software:
    ```bash
    git clone https://github.com/cybrsen/filesecurityanalyzer.git
 
-### Result
-![File Security Analyzer](https://i.ibb.co/C85FpSQ/filesecurityanalyzer.png)
 
-### Legal disclaimer
+## Contribution
+Contributions are welcome! For major changes, please open an issue first to discuss what you would like to change.
+
+## Licence
+This project is licensed under the MIT License - see the LICENSE.md file for details.
+
+
+## Legal disclaimer
 
 This script is provided as-is without any express or implied warranties. While every effort has been made to ensure the functionality and security of the script, the users of this script are solely responsible for ensuring compliance with applicable data protection laws.
 
