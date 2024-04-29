@@ -21,18 +21,18 @@ def read_pdf(filepath):
 
 def read_xlsx(filepath):
     df = pd.read_excel(filepath)
-    df = df.astype(str).fillna('')  # Convert all entries to string and fill NaNs
-    return "\n".join(df.sum(axis=1))  # Concatenate all cells into a single string for each row and join rows
+    df = df.astype(str).replace('nan', '')  # Convert all entries to string and fill NaNs
+    return "\n".join(df.apply(lambda row: ' '.join(row.values), axis=1))
 
 def scan_files(directory):
     results = []
     patterns = {
         'email': r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+',
         'ip_address': r'\b(?:\d{1,3}\.){3}\d{1,3}\b',
-        'social_security_number': r'\b\d{3}-\d{2}-\d{4}\b',
-        'credit_card_number': r'\b(?:\d{4}[- ]?){3}\d{4}\b',
-        'phone_number': r'\b\d{3}[-.]?\d{3}[-.]?\d{4}\b',
-        'date_of_birth': r'\b(?:0[1-9]|1[0-2])[-/.](?:0[1-9]|[12][0-9]|3[01])[-/.](?:19|20)\d{2}\b'
+        'social_security_number': r'\b\d{3}-?\d{2}-?\d{4}\b',  # Allows SSNs with or without dashes
+        'credit_card_number': r'\b(?:\d{4}[- ]?){3}\d{4}\b',  # Matches credit card numbers spaced or dashed
+        'phone_number': r'\b(?:\+1[-.\s]?)?(?:\(\d{3}\)[-.\s]?|\d{3}[-.\s]?)(?:\d{3}[-.\s]?\d{4})\b',  # Broader phone number format
+        'date_of_birth': r'\b(?:0?[1-9]|1[0-2])[-/.](?:0?[1-9]|[12]\d|3[01])[-/.](?:19|20\d{2})\b'  # Date formats
     }
 
     for root, dirs, files in os.walk(directory):
@@ -46,7 +46,14 @@ def scan_files(directory):
             elif filepath.endswith('.pdf'):
                 content = read_pdf(filepath)
             elif filepath.endswith('.xlsx'):
-                content = read_xlsx(filepath)
+                if file.startswith('~$'):
+                    logging.warning(f"Skipping temporary or locked file: {filepath}")
+                    continue
+                try:
+                    content = read_xlsx(filepath)
+                except Exception as e:
+                    logging.error(f"Error reading {filepath}: {str(e)}")
+                    continue
             else:
                 continue
 
@@ -56,10 +63,12 @@ def scan_files(directory):
                     matches = re.findall(pattern, content)
                     if matches:
                         file_results[type] = matches
+                    else:
+                        logging.debug(f"No matches for {type} in file {filepath}")
                 if file_results:
                     results.append((filepath, file_results))
             except Exception as e:
-                logging.error(f"Failed to read {filepath}: {str(e)}")
+                logging.error(f"Failed to process {filepath}: {str(e)}")
 
     for result in results:
         filepath, data = result
