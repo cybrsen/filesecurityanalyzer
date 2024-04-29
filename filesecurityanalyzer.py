@@ -77,6 +77,6 @@ def scan_files(directory):
             logging.info(f"  Found {len(matches)} {info_type}(s): {matches}")
 
 # Example usage
-directory_to_scan = r'C:\Users\PC\Desktop\python\files'
+directory_to_scan = r'/path/to/your/directory'
 scan_files(directory_to_scan)
 
