@@ -20,6 +20,17 @@ The script is intended for use in environments where data security and privacy a
 
 These features make the script an effective tool for environments where data security and privacy are paramount, ensuring that sensitive information is handled with the highest standards of care.
 
+### Sequence
+![Sequence Diagram](https://i.ibb.co/yPmfM5R/sequence.png)
+
+**Breakdown of the interactions:**
+1. User to System: The user initiates the scanning process by sending a request to the system.
+2. System to File System: The system, upon receiving the user's request, communicates with the file system to request access to the files that need to be scanned.
+3. File System to Logger: As the file system processes the request, it logs details of the file access to a logging system or logger. This ensures that all file access activities are recorded for security or auditing purposes.
+4. System Processing Files: The system processes the files according to the scanning criteria set by the user or the application logic. This involves reading, analyzing, and perhaps extracting information from the files.
+5. System to User: After processing the files, the system sends the results back to the user. This might include a report on what was found in the files or any actions taken based on the file content.
+6. Logger Activity: The logger continuously logs all activities, including file access and processing actions, providing a traceable record of operations for review or troubleshooting.
+
 ###Result
 ![File security Analyzer Log](https://i.ibb.co/xzKXX7n/filesecurity.png)
 
