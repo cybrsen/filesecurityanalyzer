@@ -31,7 +31,7 @@ These features make the script an effective tool for environments where data sec
 5. System to User: After processing the files, the system sends the results back to the user. This might include a report on what was found in the files or any actions taken based on the file content.
 6. Logger Activity: The logger continuously logs all activities, including file access and processing actions, providing a traceable record of operations for review or troubleshooting.
 
-###Result
+### Result
 ![File security Analyzer Log](https://i.ibb.co/xzKXX7n/filesecurity.png)
 
 ## Security and Compliance Considerations:
