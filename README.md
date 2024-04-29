@@ -25,4 +25,4 @@ What you need to install the software:
    git clone https://github.com/cybrsen/filesecurityanalyzer.git
 
 ### Result
-![File Security Analyzer](https://i.ibb.co/TtFTNgM/filesecurityanalyzer.png)
+![File Security Analyzer](https://i.ibb.co/C85FpSQ/filesecurityanalyzer.png)
