@@ -23,3 +23,6 @@ What you need to install the software:
 1. Clone the repository:
    ```bash
    git clone https://github.com/cybrsen/filesecurityanalyzer.git
+
+### Result
+![File Security Analyzer](https://i.ibb.co/2399fp5/filesecurityanalyzer.png)
