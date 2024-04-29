@@ -1,6 +1,6 @@
 # File Security Analyzer
 
-This Python script securely scans files within a specified directory to identify and report potentially sensitive information, including email addresses, IP addresses, social security numbers, credit card details, phone numbers, and dates of birth. Designed to run locally on your machine, it ensures that all results remain private and are not exposed to external risks. Additionally, the script assesses file permissions, alerting users if settings are more permissive than recommended, thereby enhancing data security.
+This simple Python script securely scans files within a specified directory to identify and report potentially sensitive information, including email addresses, IP addresses, social security numbers, credit card details, phone numbers, and dates of birth. Designed to run locally on your machine, it ensures that all results remain private and are not exposed to external risks. Additionally, the script assesses file permissions, alerting users if settings are more permissive than recommended, thereby enhancing data security.
 
 The script is intended for use in environments where data security and privacy are paramount, and it complies with best practices for handling and processing sensitive information securely.
 
